@@ -29,6 +29,9 @@ function Form() {
   return (
     <form className="add-form" action="">
       what do you need for your trip
+      <select name="amount" id=""></select>
+      <input type="text" placeholder="" />
+      <button>add</button>
     </form>
   );
 }
