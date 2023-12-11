@@ -30,9 +30,12 @@ function Form() {
     <form className="add-form" action="">
       what do you need for your trip 🧸
       <select name="amount" id="">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+        {/*We turned every options into map method which Array.from({lenght:20},map((_, i)=>i+1)) takes as 2th element  */}
+        {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+          <option value={num} key={num}>
+            {num}
+          </option>
+        ))}
       </select>
       <input type="text" placeholder="what do you need" />
       <button>add</button>
