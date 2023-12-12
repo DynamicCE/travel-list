@@ -26,19 +26,27 @@ function Logo() {
 }
 
 function Form() {
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(e);
+  }
+
   return (
-    <form className="add-form" action="">
+    <form className="add-form" action="" onSubmit={handleSubmit}>
+      {" "}
+      {/*by using handleSubmit here and not in button, if we write our input and press enter, handleSubmit will also work */}
       what do you need for your trip 🧸
       <select name="amount" id="">
         {/*We turned every options into map method which Array.from({lenght:20},map((_, i)=>i+1)) takes as 2th element  */}
-        {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+        {Array.from({ length: 20 }, (unused, i) => i + 1).map((num) => (
           <option value={num} key={num}>
-            {num}
+            {num}x
           </option>
         ))}
       </select>
       <input type="text" placeholder="what do you need" />
-      <button>add</button>
+      <button>add</button>{" "}
+      {/* we could use handleSubmit here but it would submit when only  button is clicked */}
     </form>
   );
 }
@@ -49,7 +57,7 @@ function PackingList() {
     <div className="list">
       <ul>
         {initialItems.map((object) => (
-          <Item item={object} />
+          <Item item={object} key={object.id} />
         ))}
       </ul>
     </div>
