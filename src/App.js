@@ -29,9 +29,17 @@ function Logo() {
 
 function Form() {
   const [description, setDescripton] = useState("");
-  const [quantity, setQuantity] = useState(5);
+  const [quantity, setQuantity] = useState(1);
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!description) return;
+
+    const newItem = { description, quantity, packed: false, id: Date.now };
+    console.log(newItem);
+
+    setDescripton(""); //reseting states
+    setQuantity(1);
   }
 
   return (
@@ -42,7 +50,7 @@ function Form() {
       <select
         name="amount"
         value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
+        onChange={(e) => setQuantity(Number(e.target.value))}
       >
         {/*We turned every options into map method which Array.from({lenght:20},map((_, i)=>i+1)) takes as 2th element  */}
         {Array.from({ length: 20 }, (unused, i) => i + 1).map((num) => (
@@ -61,6 +69,10 @@ function Form() {
       {/* we could use handleSubmit here but it would submit when only  button is clicked */}
     </form>
   );
+}
+{
+  /* we defined states and passed it into input and select's value */
+  /* to update that state we used onChange method on input and select , we sent onChane's event to state's current value*/
 }
 
 // in packingList, i render a map() on initialItems.For every element of that array,we return <Item/> component which takes that elements as props and render
