@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const initialItems = [
   { id: 1, description: "Passports", quantity: 2, packed: false },
   { id: 2, description: "Socks", quantity: 12, packed: false },
@@ -26,9 +28,10 @@ function Logo() {
 }
 
 function Form() {
+  const [description, setDescripton] = useState("");
+  const [choose, setChoose] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e);
   }
 
   return (
@@ -36,7 +39,11 @@ function Form() {
       {" "}
       {/*by using handleSubmit here and not in button, if we write our input and press enter, handleSubmit will also work */}
       what do you need for your trip 🧸
-      <select name="amount" id="">
+      <select
+        name="amount"
+        value={choose}
+        onChange={(e) => setChoose(e.target.value)}
+      >
         {/*We turned every options into map method which Array.from({lenght:20},map((_, i)=>i+1)) takes as 2th element  */}
         {Array.from({ length: 20 }, (unused, i) => i + 1).map((num) => (
           <option value={num} key={num}>
@@ -44,7 +51,12 @@ function Form() {
           </option>
         ))}
       </select>
-      <input type="text" placeholder="what do you need" />
+      <input
+        type="text"
+        placeholder="what do you need"
+        value={description}
+        onChange={(e) => setDescripton(e.target.value)}
+      />
       <button>add</button>{" "}
       {/* we could use handleSubmit here but it would submit when only  button is clicked */}
     </form>
