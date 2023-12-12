@@ -29,7 +29,7 @@ function Logo() {
 
 function Form() {
   const [description, setDescripton] = useState("");
-  const [choose, setChoose] = useState("");
+  const [quantity, setQuantity] = useState(5);
   function handleSubmit(e) {
     e.preventDefault();
   }
@@ -41,8 +41,8 @@ function Form() {
       what do you need for your trip 🧸
       <select
         name="amount"
-        value={choose}
-        onChange={(e) => setChoose(e.target.value)}
+        value={quantity}
+        onChange={(e) => setQuantity(e.target.value)}
       >
         {/*We turned every options into map method which Array.from({lenght:20},map((_, i)=>i+1)) takes as 2th element  */}
         {Array.from({ length: 20 }, (unused, i) => i + 1).map((num) => (
